@@ -18,6 +18,10 @@ messages:
     interaction: "&c该区域不允许交互！"
     use: "&c该区域不允许使用物品！"
     explosion: "&c该区域不允许爆炸破坏！"
+    fishing: "&c该区域不允许钓鱼！"
+    animal-interact: "&c该区域不允许与动物交互！"
+    throw: "&c该区域不允许投掷物品！"
+    shoot: "&c该区域不允许射击！"
 
   # 世界保护提示消息
   world-protection-messages:
@@ -26,6 +30,10 @@ messages:
     interaction: "&c该世界不允许交互！"
     use: "&c该世界不允许使用物品！"
     explosion: "&c该世界不允许爆炸破坏！"
+    fishing: "&c该世界不允许钓鱼！"
+    animal-interact: "&c该世界不允许与动物交互！"
+    throw: "&c该世界不允许投掷物品！"
+    shoot: "&c该世界不允许射击！"
 
 # 提示间隔设置（秒）
 message-cooldown: 5

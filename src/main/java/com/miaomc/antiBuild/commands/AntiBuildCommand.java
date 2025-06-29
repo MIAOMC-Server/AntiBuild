@@ -206,6 +206,34 @@ public class AntiBuildCommand implements CommandExecutor, TabCompleter {
                     ((ProtectedWorld) target).setAntiExplosion(enabled);
                 }
                 break;
+            case "fishing":
+                if (target instanceof ProtectedArea) {
+                    ((ProtectedArea) target).setAntiFishing(enabled);
+                } else {
+                    ((ProtectedWorld) target).setAntiFishing(enabled);
+                }
+                break;
+            case "animal-interact":
+                if (target instanceof ProtectedArea) {
+                    ((ProtectedArea) target).setAntiAnimalInteract(enabled);
+                } else {
+                    ((ProtectedWorld) target).setAntiAnimalInteract(enabled);
+                }
+                break;
+            case "throw":
+                if (target instanceof ProtectedArea) {
+                    ((ProtectedArea) target).setAntiThrow(enabled);
+                } else {
+                    ((ProtectedWorld) target).setAntiThrow(enabled);
+                }
+                break;
+            case "shoot":
+                if (target instanceof ProtectedArea) {
+                    ((ProtectedArea) target).setAntiShoot(enabled);
+                } else {
+                    ((ProtectedWorld) target).setAntiShoot(enabled);
+                }
+                break;
             default:
                 sender.sendMessage(colorize("&c无效的设置项: " + setting));
                 return true;
@@ -254,7 +282,7 @@ public class AntiBuildCommand implements CommandExecutor, TabCompleter {
                 completions.add("anti");
             }
         } else if (args.length == 4 && "anti".equals(args[2])) {
-            completions.addAll(Arrays.asList("place", "break", "interaction", "use", "explosion"));
+            completions.addAll(Arrays.asList("place", "break", "interaction", "use", "explosion", "fishing", "animal-interact", "throw", "shoot"));
         } else if (args.length == 5 && "anti".equals(args[2])) {
             completions.addAll(Arrays.asList("true", "false"));
         }

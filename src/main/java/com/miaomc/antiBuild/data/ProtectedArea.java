@@ -12,6 +12,10 @@ public class ProtectedArea {
     private boolean antiInteraction = false;
     private boolean antiUse = false;
     private boolean antiExplosion = false; // 新增防爆炸设置
+    private boolean antiFishing = false; // 新增防钓鱼设置
+    private boolean antiAnimalInteract = false; // 新增防动物交互设置
+    private boolean antiThrow = false; // 新增防投掷设置
+    private boolean antiShoot = false; // 新增防射击设置
 
     public ProtectedArea(String name, String worldName) {
         this.name = name;
@@ -83,6 +87,38 @@ public class ProtectedArea {
 
     public void setAntiExplosion(boolean antiExplosion) {
         this.antiExplosion = antiExplosion;
+    }
+
+    public boolean isAntiFishing() {
+        return antiFishing;
+    }
+
+    public void setAntiFishing(boolean antiFishing) {
+        this.antiFishing = antiFishing;
+    }
+
+    public boolean isAntiAnimalInteract() {
+        return antiAnimalInteract;
+    }
+
+    public void setAntiAnimalInteract(boolean antiAnimalInteract) {
+        this.antiAnimalInteract = antiAnimalInteract;
+    }
+
+    public boolean isAntiThrow() {
+        return antiThrow;
+    }
+
+    public void setAntiThrow(boolean antiThrow) {
+        this.antiThrow = antiThrow;
+    }
+
+    public boolean isAntiShoot() {
+        return antiShoot;
+    }
+
+    public void setAntiShoot(boolean antiShoot) {
+        this.antiShoot = antiShoot;
     }
 
     public boolean isComplete() {

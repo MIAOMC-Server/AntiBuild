@@ -16,6 +16,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -105,6 +109,14 @@ public class ProtectionListener implements Listener {
         cachedMessages.put("world-break", translateColors(plugin.getConfig().getString("messages.world-protection-messages.break")));
         cachedMessages.put("world-interaction", translateColors(plugin.getConfig().getString("messages.world-protection-messages.interaction")));
         cachedMessages.put("world-use", translateColors(plugin.getConfig().getString("messages.world-protection-messages.use")));
+        cachedMessages.put("fishing", translateColors(plugin.getConfig().getString("messages.protection-messages.fishing")));
+        cachedMessages.put("world-fishing", translateColors(plugin.getConfig().getString("messages.world-protection-messages.fishing")));
+        cachedMessages.put("animal-interact", translateColors(plugin.getConfig().getString("messages.protection-messages.animal-interact")));
+        cachedMessages.put("world-animal-interact", translateColors(plugin.getConfig().getString("messages.world-protection-messages.animal-interact")));
+        cachedMessages.put("throw", translateColors(plugin.getConfig().getString("messages.protection-messages.throw")));
+        cachedMessages.put("world-throw", translateColors(plugin.getConfig().getString("messages.world-protection-messages.throw")));
+        cachedMessages.put("shoot", translateColors(plugin.getConfig().getString("messages.protection-messages.shoot")));
+        cachedMessages.put("world-shoot", translateColors(plugin.getConfig().getString("messages.world-protection-messages.shoot")));
     }
 
     /**
@@ -284,6 +296,134 @@ public class ProtectionListener implements Listener {
 
         // 批量移除受保护的方块
         event.blockList().removeAll(protectedBlocks);
+    }
+
+    /**
+     * 阻止钓鱼事件
+     */
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerFish(PlayerFishEvent event) {
+        Player player = event.getPlayer();
+
+        // 检查是否有绕过权限
+        if (player.hasPermission("miaomc.antibuild.bypass")) {
+            return;
+        }
+
+        Location location = player.getLocation();
+
+        // 检查区域保护
+        ProtectedArea area = getCachedProtectedArea(location);
+        if (area != null && area.isAntiFishing()) {
+            event.setCancelled(true);
+            sendCooldownMessage(player, "fishing");
+            return;
+        }
+
+        // 检查世界保护
+        ProtectedWorld world = getCachedProtectedWorld(location.getWorld().getName());
+        if (world != null && world.isAntiFishing()) {
+            event.setCancelled(true);
+            sendCooldownMessage(player, "world-fishing");
+        }
+    }
+
+    /**
+     * 阻止与动物交互（如喂食、骑乘等）
+     */
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+        Player player = event.getPlayer();
+
+        // 检查是否有绕过权限
+        if (player.hasPermission("miaomc.antibuild.bypass")) {
+            return;
+        }
+
+        Location location = event.getRightClicked().getLocation();
+
+        // 检查区域保护
+        ProtectedArea area = getCachedProtectedArea(location);
+        if (area != null && area.isAntiAnimalInteract()) {
+            event.setCancelled(true);
+            sendCooldownMessage(player, "animal-interact");
+            return;
+        }
+
+        // 检查世界保护
+        ProtectedWorld world = getCachedProtectedWorld(location.getWorld().getName());
+        if (world != null && world.isAntiAnimalInteract()) {
+            event.setCancelled(true);
+            sendCooldownMessage(player, "world-animal-interact");
+        }
+    }
+
+    /**
+     * 阻止投掷物品（如雪球、鸡蛋、末影珍珠等）
+     */
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onProjectileLaunch(ProjectileLaunchEvent event) {
+        if (!(event.getEntity().getShooter() instanceof Player)) {
+            return;
+        }
+
+        Player player = (Player) event.getEntity().getShooter();
+
+        // 检查是否有绕过权限
+        if (player.hasPermission("miaomc.antibuild.bypass")) {
+            return;
+        }
+
+        Location location = player.getLocation();
+
+        // 检查区域保护
+        ProtectedArea area = getCachedProtectedArea(location);
+        if (area != null && area.isAntiThrow()) {
+            event.setCancelled(true);
+            sendCooldownMessage(player, "throw");
+            return;
+        }
+
+        // 检查世界保护
+        ProtectedWorld world = getCachedProtectedWorld(location.getWorld().getName());
+        if (world != null && world.isAntiThrow()) {
+            event.setCancelled(true);
+            sendCooldownMessage(player, "world-throw");
+        }
+    }
+
+    /**
+     * 阻止弓箭射击
+     */
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onEntityShootBow(EntityShootBowEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+
+        Player player = (Player) event.getEntity();
+
+        // 检查是否有绕过权限
+        if (player.hasPermission("miaomc.antibuild.bypass")) {
+            return;
+        }
+
+        Location location = player.getLocation();
+
+        // 检查区域保护
+        ProtectedArea area = getCachedProtectedArea(location);
+        if (area != null && area.isAntiShoot()) {
+            event.setCancelled(true);
+            sendCooldownMessage(player, "shoot");
+            return;
+        }
+
+        // 检查世界保护
+        ProtectedWorld world = getCachedProtectedWorld(location.getWorld().getName());
+        if (world != null && world.isAntiShoot()) {
+            event.setCancelled(true);
+            sendCooldownMessage(player, "world-shoot");
+        }
     }
 
     /**
