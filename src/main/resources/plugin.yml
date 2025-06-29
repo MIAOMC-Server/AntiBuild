@@ -1,0 +1,29 @@
+name: AntiBuild
+version: '0.1.0'
+main: com.miaomc.antiBuild.AntiBuild
+api-version: '1.16'
+prefix: AntiBuild
+authors: [ KumaKorin ]
+description: AntiBuild
+website: https://korin.im
+
+commands:
+  antibuild:
+    description: AntiBuild main command
+    usage: /antibuild <create|area|world> [args...]
+    permission: miaomc.antibuild.admin
+    aliases: [ ab ]
+
+permissions:
+  miaomc.antibuild.*:
+    description: All AntiBuild permissions
+    default: op
+    children:
+      miaomc.antibuild.admin: true
+      miaomc.antibuild.bypass: true
+  miaomc.antibuild.admin:
+    description: Admin permission for AntiBuild
+    default: op
+  miaomc.antibuild.bypass:
+    description: Bypass protection areas
+    default: op

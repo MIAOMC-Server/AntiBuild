@@ -1,0 +1,10 @@
+com\miaomc\antiBuild\AntiBuild.class
+com\miaomc\antiBuild\listeners\ProtectionListener$1.class
+com\miaomc\antiBuild\data\DataManager$1.class
+com\miaomc\antiBuild\data\DataManager$2.class
+com\miaomc\antiBuild\commands\AntiBuildCommand.class
+com\miaomc\antiBuild\data\ProtectedArea.class
+com\miaomc\antiBuild\listeners\ProtectionListener.class
+com\miaomc\antiBuild\data\ProtectedWorld.class
+com\miaomc\antiBuild\data\DataManager.class
+com\miaomc\antiBuild\data\DataManager$3.class

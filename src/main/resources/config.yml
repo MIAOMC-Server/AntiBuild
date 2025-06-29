@@ -1,0 +1,36 @@
+# AntiBuild 配置文件
+
+# 消息配置
+messages:
+  no-permission: "&c你没有权限执行此命令！"
+  area-created: "&a区域 &e{name} &a创建成功！"
+  world-created: "&a世界保护 &e{name} &a创建成功！"
+  area-not-found: "&c区域 &e{name} &c不存在！"
+  world-not-found: "&c世界保护 &e{name} &c不存在！"
+  point-a-set: "&a区域 &e{name} &a的点A已设置！"
+  point-b-set: "&a区域 &e{name} &a的点B已设置！"
+  setting-updated: "&a{type} &e{name} &a的 &e{action} &a设置已更新为 &e{value}&a！"
+
+  # 保护提示消息
+  protection-messages:
+    place: "&c该区域不允许放置方块！"
+    break: "&c该区域不允许破坏方块！"
+    interaction: "&c该区域不允许交互！"
+    use: "&c该区域不允许使用物品！"
+    explosion: "&c该区域不允许爆炸破坏！"
+
+  # 世界保护提示消息
+  world-protection-messages:
+    place: "&c该世界不允许放置方块！"
+    break: "&c该世界不允许破坏方块！"
+    interaction: "&c该世界不允许交互！"
+    use: "&c该世界不允许使用物品！"
+    explosion: "&c该世界不允许爆炸破坏！"
+
+# 提示间隔设置（秒）
+message-cooldown: 5
+
+# 数据保存间隔（分钟）
+save-interval: 10
+
+# 区域和世界保护数据将自动保存到 data.yml 文件中
