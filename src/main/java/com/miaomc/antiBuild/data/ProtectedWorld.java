@@ -11,6 +11,7 @@ public class ProtectedWorld {
     private boolean antiAnimalInteract = false; // 新增防动物交互设置
     private boolean antiThrow = false; // 新增防投掷设置
     private boolean antiShoot = false; // 新增防射击设置
+    private boolean antiTrample = false; // 新增防踩踏农作物设置
 
     public ProtectedWorld(String worldName) {
         this.worldName = worldName;
@@ -97,6 +98,14 @@ public class ProtectedWorld {
         this.antiShoot = antiShoot;
     }
 
+    public boolean isAntiTrample() {
+        return antiTrample;
+    }
+
+    public void setAntiTrample(boolean antiTrample) {
+        this.antiTrample = antiTrample;
+    }
+
     @Override
     public String toString() {
         return "ProtectedWorld{" +
@@ -110,6 +119,7 @@ public class ProtectedWorld {
                 ", antiAnimalInteract=" + antiAnimalInteract +
                 ", antiThrow=" + antiThrow +
                 ", antiShoot=" + antiShoot +
+                ", antiTrample=" + antiTrample +
                 '}';
     }
 }

@@ -234,6 +234,13 @@ public class AntiBuildCommand implements CommandExecutor, TabCompleter {
                     ((ProtectedWorld) target).setAntiShoot(enabled);
                 }
                 break;
+            case "trample":
+                if (target instanceof ProtectedArea) {
+                    ((ProtectedArea) target).setAntiTrample(enabled);
+                } else {
+                    ((ProtectedWorld) target).setAntiTrample(enabled);
+                }
+                break;
             default:
                 sender.sendMessage(colorize("&c无效的设置项: " + setting));
                 return true;
@@ -282,7 +289,7 @@ public class AntiBuildCommand implements CommandExecutor, TabCompleter {
                 completions.add("anti");
             }
         } else if (args.length == 4 && "anti".equals(args[2])) {
-            completions.addAll(Arrays.asList("place", "break", "interaction", "use", "explosion", "fishing", "animal-interact", "throw", "shoot"));
+            completions.addAll(Arrays.asList("place", "break", "interaction", "use", "explosion", "fishing", "animal-interact", "throw", "shoot", "trample"));
         } else if (args.length == 5 && "anti".equals(args[2])) {
             completions.addAll(Arrays.asList("true", "false"));
         }

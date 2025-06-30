@@ -16,6 +16,7 @@ public class ProtectedArea {
     private boolean antiAnimalInteract = false; // 新增防动物交互设置
     private boolean antiThrow = false; // 新增防投掷设置
     private boolean antiShoot = false; // 新增防射击设置
+    private boolean antiTrample = false; // 新增防踩踏农作物设置
 
     public ProtectedArea(String name, String worldName) {
         this.name = name;
@@ -119,6 +120,14 @@ public class ProtectedArea {
 
     public void setAntiShoot(boolean antiShoot) {
         this.antiShoot = antiShoot;
+    }
+
+    public boolean isAntiTrample() {
+        return antiTrample;
+    }
+
+    public void setAntiTrample(boolean antiTrample) {
+        this.antiTrample = antiTrample;
     }
 
     public boolean isComplete() {

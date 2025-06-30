@@ -97,6 +97,11 @@ public class DataManager {
                 area.setAntiInteraction(dataConfig.getBoolean(path + "antiInteraction", false));
                 area.setAntiUse(dataConfig.getBoolean(path + "antiUse", false));
                 area.setAntiExplosion(dataConfig.getBoolean(path + "antiExplosion", false)); // 新增
+                area.setAntiFishing(dataConfig.getBoolean(path + "antiFishing", false));
+                area.setAntiAnimalInteract(dataConfig.getBoolean(path + "antiAnimalInteract", false));
+                area.setAntiThrow(dataConfig.getBoolean(path + "antiThrow", false));
+                area.setAntiShoot(dataConfig.getBoolean(path + "antiShoot", false));
+                area.setAntiTrample(dataConfig.getBoolean(path + "antiTrample", false));
 
                 protectedAreas.put(areaName, area);
             }
@@ -113,6 +118,11 @@ public class DataManager {
                 world.setAntiInteraction(dataConfig.getBoolean(path + "antiInteraction", false));
                 world.setAntiUse(dataConfig.getBoolean(path + "antiUse", false));
                 world.setAntiExplosion(dataConfig.getBoolean(path + "antiExplosion", false));
+                world.setAntiFishing(dataConfig.getBoolean(path + "antiFishing", false));
+                world.setAntiAnimalInteract(dataConfig.getBoolean(path + "antiAnimalInteract", false));
+                world.setAntiThrow(dataConfig.getBoolean(path + "antiThrow", false));
+                world.setAntiShoot(dataConfig.getBoolean(path + "antiShoot", false));
+                world.setAntiTrample(dataConfig.getBoolean(path + "antiTrample", false));
 
                 protectedWorlds.put(worldName, world);
             }
@@ -142,6 +152,11 @@ public class DataManager {
             dataConfig.set(path + "antiInteraction", area.isAntiInteraction());
             dataConfig.set(path + "antiUse", area.isAntiUse());
             dataConfig.set(path + "antiExplosion", area.isAntiExplosion());
+            dataConfig.set(path + "antiFishing", area.isAntiFishing());
+            dataConfig.set(path + "antiAnimalInteract", area.isAntiAnimalInteract());
+            dataConfig.set(path + "antiThrow", area.isAntiThrow());
+            dataConfig.set(path + "antiShoot", area.isAntiShoot());
+            dataConfig.set(path + "antiTrample", area.isAntiTrample());
         }
 
         // 保存保护世界
@@ -151,7 +166,12 @@ public class DataManager {
             dataConfig.set(path + "antiBreak", world.isAntiBreak());
             dataConfig.set(path + "antiInteraction", world.isAntiInteraction());
             dataConfig.set(path + "antiUse", world.isAntiUse());
-            dataConfig.set(path + "antiExplosion", world.isAntiExplosion()); // 新增
+            dataConfig.set(path + "antiExplosion", world.isAntiExplosion());
+            dataConfig.set(path + "antiFishing", world.isAntiFishing());
+            dataConfig.set(path + "antiAnimalInteract", world.isAntiAnimalInteract());
+            dataConfig.set(path + "antiThrow", world.isAntiThrow());
+            dataConfig.set(path + "antiShoot", world.isAntiShoot());
+            dataConfig.set(path + "antiTrample", world.isAntiTrample());
         }
 
         try {
